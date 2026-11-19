@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Movie {
+  id            String  @id @default(uuid(7)) @db.Uuid
+  title         String  @unique
+  releaseYear   Int
+  runtime       Int
+  watched       Boolean @default(false)
+  // Movies to watch before this one, and the movies that list this one as a prerequisite.
+  prerequisites Movie[] @relation("MoviePrerequisites")
+  requiredBy    Movie[] @relation("MoviePrerequisites")
+}
+
+model Cinema {
+  id          String @id @default(uuid(7)) @db.Uuid
+  name        String @unique
+  bundleSizes Int[]
+}

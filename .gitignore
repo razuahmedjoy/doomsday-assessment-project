@@ -1,0 +1,6 @@
+node_modules
+dist
+.env
+
+# Assessment brief (not part of the submission)
+Full Stack Developer Internship*Assessment*.md
